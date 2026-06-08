@@ -1,8 +1,6 @@
 # Amp Guitar
 
-#### Video Demo: https://www.loom.com/share/2e15acd5ee9243ae86cc97e6ec069318
-
-#### Description: I started my CS50 final project using the popular design tool Figma. It was very easy to learn and within a few days I felt comfortable using it to create a mockup for my web application. Creating a logo was also easy and having already determined the color scheme, font, and element spacing made development a lot easier!
+#### Description: I started my CS50 final project using the popular design tool Figma. It was very easy to learn and within a few days I felt comfortable using it to create a mockup for my web application. Creating a logo was also easy and having already determined the color scheme, font, and element spacing made development a lot smoother!
 
 #### Amp Guitar is a single page web application that provides tools to amplify guitarists' skills. The first tool provided is a scale finder. The finder feature will help the user/guitarist write melodies and solos for any particular section of a song.
 
