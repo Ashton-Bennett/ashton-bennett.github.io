@@ -2,7 +2,7 @@ import ChordForm from "./ChordForm";
 import ScaleButton from "./ScaleButton";
 import { useState } from "react";
 import FretBoard from "./FretBoard";
-import { notesOfAScale, rootNoteFinder } from "./ScaleButton";
+import { notesOfAScale, rootNoteFinder } from "../musicTheoryUtils";
 
 const finderBody = {
   display: "flex",
@@ -31,9 +31,7 @@ const scaleDisplayContainer = {
 const scaleDisplayLeft = {
   paddingRight: ".5em",
   display: "flex",
-  // flexDirection: "column",
   flexWrap: "wrap",
-  // alignItems: "center",
   justifyContent: "space-around",
   alignItems: "stretch",
   marginBottom: "2em",
@@ -157,7 +155,7 @@ const Finder = (props) => {
     alteredChords = alteredChords.filter((chord) => chord !== undefined);
 
     const showScales = scalesMinorOrMajor.filter((x) =>
-      alteredChords.every((note) => notesOfAScale(x, chordOne).includes(note))
+      alteredChords.every((note) => notesOfAScale(x, chordOne).includes(note)),
     );
 
     setScales(showScales);

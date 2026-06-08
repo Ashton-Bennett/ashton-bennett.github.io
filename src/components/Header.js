@@ -45,7 +45,7 @@ const header = () => {
         <img
           style={logoImage}
           src={logo}
-          alt="company logo in the shape of muscal note"
+          alt="company logo in the shape of musical note"
         />
         <div style={logoName}>Amp Guitar</div>
       </Link>
@@ -59,6 +59,12 @@ const header = () => {
             {" "}
             <li className="btn MainNavButton" style={finder}>
               Finder
+            </li>{" "}
+          </Link>
+          <Link style={{ textDecoration: "none" }} to="/Chord">
+            {" "}
+            <li className="btn MainNavButton" style={finder}>
+              Chord
             </li>{" "}
           </Link>
         </ul>

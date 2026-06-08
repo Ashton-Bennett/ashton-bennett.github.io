@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Finder from "./components/finderPage/Finder.js";
 import About from "./components/About.js";
 import Contact from "./components/contactPage/Contact.js";
+import Chord from "./components/chordPage/ChordPage.js";
 
 function App() {
   const main = {
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/Finder">
             <Finder />
+          </Route>
+          <Route path="/Chord">
+            <Chord />
           </Route>
           <Route path="/About">
             <About />

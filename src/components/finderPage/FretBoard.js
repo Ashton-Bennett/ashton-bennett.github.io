@@ -1,7 +1,7 @@
 import { Fretboard } from "@moonwave99/fretboard.js";
 import "/Users/ashtonbennett/Desktop/projects/amp_guitar/src/styles/buttonandbreakpoints.css";
 import React, { useEffect } from "react";
-import { fretboardObj } from "./ScaleButton";
+import { fretboardObj } from "../fretBoard";
 
 const syleToShowUp = {
   width: "100%",
@@ -46,10 +46,10 @@ const FretBoard = ({ coordinatesToShow, chordOne }) => {
       .filter((x) => x !== "M")
       .join("");
     const fretBoardWithOrangeDots = fretboardObj[alteredChordOne].map(
-      (obj) => ({ ...obj, interval: 1 })
+      (obj) => ({ ...obj, interval: 1 }),
     );
     const coordinatesWithOrangeDots = coordinatesToShow.concat(
-      fretBoardWithOrangeDots
+      fretBoardWithOrangeDots,
     );
 
     fretboard
