@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.88da9b01.css",
+    "main.js": "/static/js/main.39d35561.js",
+    "static/media/afro_guitarist.png": "/static/media/afro_guitarist.b8f5a1a9812bfa5d401b.png",
+    "static/media/logos.svg": "/static/media/logos.73d5a57a8b45ed079ed3dcf9ffdc9672.svg",
+    "index.html": "/index.html",
+    "main.88da9b01.css.map": "/static/css/main.88da9b01.css.map",
+    "main.39d35561.js.map": "/static/js/main.39d35561.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.88da9b01.css",
+    "static/js/main.39d35561.js"
+  ]
+}
