@@ -69,14 +69,20 @@ const chordsDisplay = {
 };
 
 const chordCard = {
-  backgroundColor: "#2EB718",
   color: "white",
-  padding: "1em",
-  borderRadius: "10px",
-  boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.60)",
+  padding: "1rem",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  fontSize: "2.5rem",
+};
+
+const numbers = {
+  background: "linear-gradient(to bottom, #2eb718, #e3941c)",
+  WebkitBackgroundClip: "text",
+  backgroundClip: "text",
+  color: "transparent",
+  marginBottom: "0",
 };
 
 const ChordPage = () => {
@@ -104,6 +110,8 @@ const ChordPage = () => {
     setChords([]);
   };
 
+  const romainNumerals = ["I", "II", "III", "IV", "V", "VI", "VII"];
+
   return (
     <div className="chordForm">
       <form onSubmit={submit} style={chordFormStyle}>
@@ -112,7 +120,7 @@ const ChordPage = () => {
             <div style={chordsDisplay}>
               {chords.map((chord, i) => (
                 <div style={chordCard} key={chord}>
-                  <h2>{i + 1}</h2>
+                  <h2 style={numbers}>{romainNumerals[i]}</h2>
                   <h3>{chord}</h3>
                 </div>
               ))}

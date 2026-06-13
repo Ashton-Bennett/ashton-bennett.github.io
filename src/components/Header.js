@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "/Users/ashtonbennett/Desktop/projects/amp_guitar/src/styles/buttonandbreakpoints.css";
-import logo from "/Users/ashtonbennett/Desktop/projects/amp_guitar/src/images/logos.svg";
+import logo from "/Users/ashtonbennett/Desktop/projects/amp_guitar/src/images/logoS.svg";
 
 const brandLogo = {
   display: "flex",
