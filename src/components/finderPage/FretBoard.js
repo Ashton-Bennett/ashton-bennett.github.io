@@ -5,10 +5,9 @@ import { fretboardObj } from "../fretBoard";
 
 const syleToShowUp = {
   width: "100%",
-  maxWidth: "50vw",
+  maxWidth: "80vw",
   background: "white",
   borderRadius: "5px",
-  border: "5px solid black",
   fontSize: "4rem",
 };
 

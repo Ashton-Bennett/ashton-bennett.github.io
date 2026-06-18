@@ -1,5 +1,5 @@
 import ChordForm from "./ChordForm";
-import ScaleButton from "./ScaleButton";
+import { fretboardObj } from "../fretBoard";
 import { useState } from "react";
 import FretBoard from "./FretBoard";
 import { notesOfAScale, rootNoteFinder } from "../musicTheoryUtils";
@@ -14,29 +14,24 @@ const MainContentContainer = {
   flexDirection: "column",
   alignItems: "center",
   zIndex: "0",
-  padding: "7em",
+  padding: "3em",
+  paddingRight: "4em",
   height: "55%",
   flex: 1,
 };
 
 const scaleDisplayContainer = {
   backgroundColor: "#201D1D",
-  margin: "0, 2rem",
   borderRadius: "10px",
   boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.60)",
   display: "flex",
+  flexDirection: "column",
   width: "100%",
 };
 
 const scaleDisplayLeft = {
-  paddingRight: ".5em",
-  display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "space-around",
-  alignItems: "stretch",
-  marginBottom: "2em",
-  width: "70%",
-  maxHeight: "700px",
+  padding: "2rem",
+  paddingRight: "0",
 };
 
 const scaleDisplayRight = {
@@ -46,9 +41,6 @@ const scaleDisplayRight = {
   justifyItems: "center",
   justifyContent: "center",
   width: "100%",
-  minWidth: "60%",
-  paddingRight: "3em",
-  paddingBottom: "2em",
 };
 
 const intialDirections = {
@@ -62,11 +54,6 @@ const intialDirections = {
 export const subtitle = {
   fontWeight: "500",
   fontSize: "2em",
-  marginLeft: "2em",
-  display: "flex",
-  flexDirection: "column",
-  width: "100%",
-  alignItems: "center",
 };
 
 export const Title = {
@@ -159,6 +146,27 @@ const Finder = (props) => {
     );
 
     setScales(showScales);
+    handleScaleClick(event, showScales[0]);
+  };
+
+  const handleScaleClick = async (event, name) => {
+    event.preventDefault();
+
+    // will first set coordinates to nothing removing the diagram
+    await setCoordinatesToShow([]);
+
+    // takes the information needed from the form to find the key and sets name of the scale to be rendered
+    setScaleToDisplay(`${rootNoteFinder(chordOne)} ${name}`);
+
+    const notes = notesOfAScale(name, chordOne);
+
+    // loops over the fretboard obj to find the coordinates needed to display and sets the state to display them
+    var coordinates = [];
+
+    for (let i = 0; i < notes.length; i++) {
+      coordinates = coordinates.concat(fretboardObj[notes[i]]);
+    }
+    setCoordinatesToShow(coordinates);
   };
 
   return (
@@ -173,17 +181,18 @@ const Finder = (props) => {
 
           {scales.length > 0 && (
             <div style={scaleDisplayLeft}>
-              <p style={subtitle}>Pick a scale to display</p>
-              {scales.map((scale) => (
-                <ScaleButton
-                  key={scale}
-                  name={scale}
-                  chordOne={chordOne}
-                  coordinatesToShow={coordinatesToShow}
-                  setCoordinatesToShow={setCoordinatesToShow}
-                  setScaleToDisplay={setScaleToDisplay}
-                />
-              ))}
+              <p style={subtitle}>Select a scale</p>
+              <select
+                onChange={(event) =>
+                  handleScaleClick(event, event.target.value)
+                }
+              >
+                {scales.map((scale) => (
+                  <option key={scale} value={scale} name={scale}>
+                    {scale}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
 
