@@ -1,10 +1,9 @@
-import { useRef } from "react";
-import emailjs from "@emailjs/browser";
+import { useState } from "react";
 
 const formBox = {
-  backgroundColor: "#000000",
+  backgroundColor: "rgb(32, 29, 29)",
   borderRadius: "15px",
-  boxShadow: "10px 10px 10px rgba(0, 0, 0, 1.0)",
+  boxShadow: "rgba(0, 0, 0, 0.6) 0px 8px 15px;",
   height: "70%",
   width: "60%",
   display: "flex",
@@ -15,8 +14,8 @@ const formBox = {
 
 const formEnterField = {
   width: "30vw",
-  marginRight: "1em",
-  marginLeft: "2.5em",
+  display: "flex",
+  flexDirection: "column",
   fontSize: "1.5rem",
   color: "white",
   border: "solid 1px",
@@ -28,8 +27,6 @@ const formEnterField = {
 const formEnterFieldDetail = {
   width: "30vw",
   height: "20vh",
-  marginRight: "1em",
-  marginLeft: "2.5em",
   fontSize: "1.5rem",
   color: "white",
   border: "solid 1px",
@@ -44,13 +41,12 @@ const formButtonSubmit = {
   backgroundColor: "#E3941C",
   color: "white",
   width: "30vw",
-  marginLeft: "9rem",
   marginTop: "2rem",
   padding: ".5em .5em",
   borderRadius: "15px",
   border: "none",
   fontSize: "1.4rem",
-  boxShadow: "10px 10px 10px rgba(0, 0, 0, 1.0)",
+  boxShadow: "rgba(0, 0, 0, 0.6) 0px 8px 15px;",
   cursor: "pointer",
   fontFamily: "Jacques Francois",
 };
@@ -59,44 +55,39 @@ const labelStyle = {
   fontSize: "1.5em",
 };
 
-const labelStyleDetail = {
-  fontSize: "1.5em",
-  float: "left",
-  width: "2.6em",
+const formInner = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 };
 
-const formLine = {
-  padding: "1em",
+const message = {
+  display: "flex",
+  flexDirection: "column",
 };
 
 const ContactForm = () => {
-  const form = useRef();
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const [result, setResult] = useState("");
 
-    emailjs
-      .sendForm(
-        "service_7q5fuxo",
-        "template_uolh2xi",
-        form.current,
-        "lfjcebaw33hUQpejJ"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-    e.target.reset();
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.append("access_key", "ebd87e0f-9767-4819-a89e-9f8d21b9995f");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+    setResult(data.success ? "Success!" : "Error");
   };
 
   return (
     <div style={formBox}>
-      <form ref={form} onSubmit={sendEmail}>
-        <div style={formLine}>
-          <label style={labelStyle}>Name:</label>
+      <form style={formInner} onSubmit={onSubmit}>
+        <div>
+          <label style={labelStyle}>Name</label>
           <input
             style={formEnterField}
             type="text"
@@ -106,8 +97,8 @@ const ContactForm = () => {
           <br></br>
         </div>
 
-        <div style={formLine}>
-          <label style={labelStyle}>Email:</label>
+        <div>
+          <label style={labelStyle}>Email</label>
           <input
             style={formEnterField}
             type="email"
@@ -117,8 +108,8 @@ const ContactForm = () => {
           <br></br>
         </div>
 
-        <div style={formLine}>
-          <label style={labelStyleDetail}>Detail:</label>
+        <div style={message}>
+          <label style={labelStyle}>Message</label>
           <textarea
             style={formEnterFieldDetail}
             type="textarea"
@@ -129,6 +120,7 @@ const ContactForm = () => {
         </div>
 
         <input style={formButtonSubmit} type="submit" value="Submit"></input>
+        <p style={labelStyle}>{result}</p>
       </form>
     </div>
   );
