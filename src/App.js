@@ -1,7 +1,7 @@
 import Header from "./components/Header.js";
 import HomePage from "./components/HomePage";
 import Footer from "./components/Footer.js";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Finder from "./components/finderPage/Finder.js";
 import About from "./components/About.js";
 import Contact from "./components/contactPage/Contact.js";
@@ -12,7 +12,7 @@ function App() {
     width: "100vw",
     height: "100vh",
     color: "#FAF6F6",
-    fontFamily: "Jacques Francois | sans-serif",
+    fontFamily: "Jacques Francois, sans-serif",
     padding: "0",
     margin: "0,",
     boxSizing: "border-box",
